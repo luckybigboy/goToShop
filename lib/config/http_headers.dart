@@ -1,0 +1,16 @@
+const http_headers = {
+  "Accept": "*/*",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+  "Connection": "keep-alive",
+  "Host": "gold-tag-ms.juejin.im",
+  "Origin": "https://juejin.im",
+  "Referer": "https://juejin.im/timeline",
+  "Sec-Fetch-Mode":"cors",
+  "Sec-Fetch-Site": "same-site",
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
+  "X-Juejin-Client": "1578273176759",
+  "X-Juejin-Src": "web",
+  "X-Juejin-Token": "eyJhY2Nlc3NfdG9rZW4iOiJZdzk0NHlxVlRlUU9ITUV2IiwicmVmcmVzaF90b2tlbiI6IkZjRWFNakZCeGNXQ3dzWG8iLCJ0b2tlbl90eXBlIjoibWFjIiwiZXhwaXJlX2luIjoyNTkyMDAwfQ==",
+  "X-Juejin-Uid": "5b8cf7e751882542ff3e7420",
+};
