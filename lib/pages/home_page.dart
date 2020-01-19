@@ -1,102 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:dio/dio.dart';
-
-// class HomePage extends StatefulWidget {
-//   @override
-//   _HomePageState createState() => _HomePageState();
-// }
-
-// class _HomePageState extends State<HomePage> {
-//   TextEditingController typeController = TextEditingController();
-//   String showText = '欢迎来到王者荣耀';
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: Scaffold(
-//           appBar: AppBar(
-//             title: Text('首页'),
-//           ),
-//           body: SingleChildScrollView(
-//             //  SingleChildScrollView 解决输入框弹起时界面超出问题
-//             child: Container(
-//               child: Column(
-//                 children: <Widget>[
-//                   TextField(
-//                     controller: typeController,
-//                     decoration: InputDecoration(
-//                         contentPadding: EdgeInsets.all(10.0),
-//                         labelText: '什么类型',
-//                         helperText: '请输入你喜欢的类型'),
-//                     autofocus: false,
-//                   ),
-//                   RaisedButton(
-//                     onPressed: _choose,
-//                     child: Text('选择完毕'),
-//                   ),
-//                   Text(
-//                     showText,
-//                     overflow: TextOverflow.ellipsis,
-//                     maxLines: 1,
-//                   ),
-//                   RaisedButton(
-//                     onPressed: _tip,
-//                     child: Text('你点击试一下'),
-//                   ),
-//                   Container(
-//                     padding: EdgeInsets.all(10.0),
-//                     child: Text(
-//                       '你试一下， 试试就试试，  你倒是试一试啊， 还是不是了吧， 你说到底有多撒好歌试试',
-//                       maxLines: 1,
-//                       overflow: TextOverflow.ellipsis,
-//                     ),
-//                   )
-//                 ],
-//               ),
-//             ),
-//           )),
-//     );
-//   }
-
-//   void _tip() {
-//     showDialog(
-//         context: context,
-//         builder: (context) => AlertDialog(
-//               title: Text('hello boys and girls'),
-//             ));
-//   }
-
-//   void _choose() {
-//     if (typeController.text.toString() == '') {
-//       showDialog(
-//           context: context,
-//           builder: (context) => AlertDialog(
-//                 title: Text('请填写你想搜索的东东？？？'),
-//               ));
-//     } else {
-//       getData(typeController.text.toString()).then((res) {
-//         setState(() {
-//           print(res['data']['name'].toString());
-//           showText = res['data']['name'].toString();
-//         });
-//       });
-//     }
-//   }
-
-//   Future getData(String typeText) async {
-//     try {
-//       Response response;
-//       var data = {'name': typeText};
-//       response = await Dio().post(
-//           'https://www.easy-mock.com/mock/5e204e38e1c2cf1d346e0ddd/example/big__bear',
-//           queryParameters: data);
-//       print(response.data);
-//       return response.data;
-//     } catch (e) {
-//       return print(e);
-//     }
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
@@ -104,6 +5,13 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../service/serice_method.dart';
+
+// pages
+import './secondary_pages/home/adBanner.dart';
+import './secondary_pages/home/leaderPhone.dart';
+import './secondary_pages/home/swiper.dart';
+import './secondary_pages/home/topNavigator.dart';
+import './secondary_pages/home/secondsKill.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -173,6 +81,66 @@ class _HomePageState extends State<HomePage> {
       'mailCategoryName': 'PLUS会员'
     }
   ];
+
+  final BannerArr = [
+    'https://m.360buyimg.com/mobilecms/s376x240_jfs/t1/32449/33/15631/174497/5cc2d86bE0289110c/9c53e25651659d43.png!q70.jpg.dpg',
+    'https://m.360buyimg.com/mobilecms/s376x240_jfs/t1/49601/16/12206/115887/5d91b4d5E34709952/aba2bcb4855e6e52.png!q70.jpg.dpg'
+  ];
+
+  //  leaderMsg
+  final List<String> leaderMsg = [
+    'https://m.360buyimg.com/mobilecms/s140x140_jfs/t1/105758/39/10683/35934/5e2315e9E41e43f6e/f65a24de73983da4.png!q70.jpg.dpg',
+    'https://m.360buyimg.com/mobilecms/s140x140_jfs/t1/102953/18/10961/39735/5e2315f7Efcce3049/1d3de2bcc7e3fe77.png!q70.jpg.dpg',
+    'https://m.360buyimg.com/mobilecms/jfs/t1/103804/16/10834/159993/5e231963E1017bb2c/b096e27d4c193715.gif'
+  ];
+  final String leaderPhone = '13296618721';
+
+  // secondsSkillMsg
+  final List<Map> secondsSkillArr = [
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t1/85292/40/10545/158194/5e1ebb1bEf9a2ca69/a4db5216d9d4f7ca.jpg.dpg',
+      'currentPrice': '96',
+      'originPrince': '298'
+    },
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t1/67232/37/8586/92531/5d67882cE0dd981be/91f19a860a73d8ad.jpg.dpg',
+      'currentPrice': '115',
+      'originPrince': '339'
+    },
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t1/88030/1/10421/163122/5e1bde07E6ce54c94/fe2fbf9bb8349d21.jpg.dpg',
+      'currentPrice': '124.99',
+      'originPrince': '299'
+    },
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t12436/187/278016925/407757/24f24356/5a070460N41b5c1c1.jpg.dpg',
+      'currentPrice': '39.8',
+      'originPrince': '89'
+    },
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t1/98913/32/143/442886/5da84a2eEc4f98df9/3fcb4daeec17d3c2.jpg.dpg',
+      'currentPrice': '123.99',
+      'originPrince': '399'
+    },
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t1/86023/20/10708/172944/5e1e7e25Ecec8424c/89ee2f04ca3d9a9e.jpg.dpg',
+      'currentPrice': '123.99',
+      'originPrince': '399'
+    },
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t1/66260/25/11056/149965/5d8825a6Eb47ec609/e64417c2637739fe.jpg.dpg',
+      'currentPrice': '123.99',
+      'originPrince': '399'
+    }
+  ];
+
   @override
   // void initState() {
   //   getHomePageContext().then((res) => {
@@ -185,123 +153,59 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('首页'),
-        ),
-        // body: FutureBuilder(                 //  有了futureBuilder 这个widget 就不需要initState了
-        //   future: getHomePageContext(),
-        //   builder: (context, snapshot) {
-        //     if(snapshot.hasData) {
-        //       var data = json.decode(snapshot.data.toString());   // 数据反编译 使用json就需要引入import 'dart:convert';
-        //       List<Map> SwiperItemLists = (data['data']['slides'] as List).cast();  // 后台数据
-        //       List<Map> NavigatorList = (data['data']['category'] as List).cast();
-        //       return Column(
-        //         children: <Widget>[
-        //           SwiperItem(SwiperItemList: SwiperItemLists),
-        //           TopNavigator(navigatorList: NavigatorList)
-        //         ],
-        //       );
-        //     } else {
-        //       return Center(
-        //         child: Text('加载中...'),
-        //       );
-        //     }
-        //   },
-        // )
+          appBar: AppBar(
+            title: Text('首页'),
+          ),
+          // body: FutureBuilder(                 //  有了futureBuilder 这个widget 就不需要initState了
+          //   future: getHomePageContext(),
+          //   builder: (context, snapshot) {
+          //     if(snapshot.hasData) {
+          //       var data = json.decode(snapshot.data.toString());   // 数据反编译 使用json就需要引入import 'dart:convert';
+          //       List<Map> SwiperItemLists = (data['data']['slides'] as List).cast();  // 后台数据
+          //       List<Map> NavigatorList = (data['data']['category'] as List).cast();
+          //       return Column(
+          //         children: <Widget>[
+          //           SwiperItem(SwiperItemList: SwiperItemLists),
+          //           TopNavigator(navigatorList: NavigatorList)
+          //         ],
+          //       );
+          //     } else {
+          //       return Center(
+          //         child: Text('加载中...'),
+          //       );
+          //     }
+          //   },
+          // )
 
-        body: Container(
-          child: Column(
+          body: ListView(
             children: <Widget>[
-              Container(
-                  color: Color.fromRGBO(239, 13, 59, 1),
-                  child: SingleChildScrollView(
-                    child: SwiperItem(SwiperItemList: SwiperItemLists),
-                  )),
               Container(
                 color: Color.fromRGBO(239, 13, 59, 1),
-                child: TopNavigator(navigatorList: navigatorList),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        child: SingleChildScrollView(
+                      child: SwiperItem(SwiperItemList: SwiperItemLists),
+                    )),
+                    Container(
+                      height: ScreenUtil().setHeight(300),
+                      child: TopNavigator(navigatorList: navigatorList),
+                    ),
+                    Container(
+                      child: LeaderPhone(
+                          leaderMsg: leaderMsg, leaderPhone: leaderPhone),
+                    ),
+                    SecondsKill(secondsSkillArr: secondsSkillArr),
+                    Container(
+                      child: SingleChildScrollView(
+                        child: AdBanner(recommendBanner: BannerArr),
+                      ),
+                    ),
+                  ],
+                ),
               )
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-//  轮播组件
-class SwiperItem extends StatelessWidget {
-  final List SwiperItemList;
-  SwiperItem({Key key, this.SwiperItemList}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    // print('设备的像素密度 + ${ScreenUtil.pixelRatio}');
-    // print('设备的高 + ${ScreenUtil.screenHeight}');
-    // print('设备的宽 + ${ScreenUtil.screenWidth}');
-    return Container(
-      width: ScreenUtil().setWidth(750),
-      height: ScreenUtil().setHeight(333),
-      child: Swiper(
-        itemBuilder: (context, index) => ClipRRect(
-          // 为图片添加圆角
-          borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-            '${SwiperItemList[index]}',
-            fit: BoxFit.fill,
-          ),
-        ),
-        itemCount: SwiperItemList.length,
-        pagination: SwiperPagination(),
-        autoplay: true,
-        duration: 500,
-        viewportFraction: 0.9,
-        scale: 0.9,
-      ),
-    );
-  }
-}
-
-//
-class TopNavigator extends StatelessWidget {
-  final List navigatorList;
-  TopNavigator({Key key, this.navigatorList}) : super(key: key);
-
-  Widget _gridViewItem(BuildContext context, item) {
-    return InkWell(
-        onTap: () {
-          print('点击了导航');
-        },
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Image.network(item['image'], width: ScreenUtil().setWidth(90.0)),
-              Text(
-                item['mailCategoryName'],
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold),
-              )
-            ],
-          ),
-        ));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (navigatorList.length > 10) {
-      navigatorList.removeRange(10, navigatorList.length);
-    }
-    return Container(
-      height: ScreenUtil().setHeight(320),
-      padding: EdgeInsets.all(3.0),
-      child: GridView.count(
-        crossAxisCount: 5,
-        padding: EdgeInsets.all(4.0),
-        children: navigatorList.map((item) {
-          return _gridViewItem(context, item);
-        }).toList(),
-      ),
+          )),
     );
   }
 }
