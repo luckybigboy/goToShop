@@ -12,13 +12,24 @@ import './secondary_pages/home/leaderPhone.dart';
 import './secondary_pages/home/swiper.dart';
 import './secondary_pages/home/topNavigator.dart';
 import './secondary_pages/home/secondsKill.dart';
+import './secondary_pages/home/goods_recommend.dart';
+import './secondary_pages/home/floorTitle.dart';
+import './secondary_pages/home/floorRow.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+  void initState() {
+    super.initState();
+    print('111111111111111');
+  }
+
   String membetTitle = '正在获取数据';
 
   // 轮播数据
@@ -95,7 +106,11 @@ class _HomePageState extends State<HomePage> {
   ];
   final String leaderPhone = '13296618721';
 
-  // secondsSkillMsg
+  final List leaderImg = [
+    'https://m.360buyimg.com/n1/s184x242_jfs/t20596/45/542335114/113695/301f6e3/5b10b90eN29eca437.jpg!q70.jpg.dpg'
+  ];
+
+  // 限时秒杀
   final List<Map> secondsSkillArr = [
     {
       'url':
@@ -141,7 +156,59 @@ class _HomePageState extends State<HomePage> {
     }
   ];
 
-  @override
+  // 商品推荐
+  final List<Map> goodsRecommend = [
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t12436/187/278016925/407757/24f24356/5a070460N41b5c1c1.jpg.dpg',
+      'currentPrice': '39.8',
+      'originPrince': '89'
+    },
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t1/98913/32/143/442886/5da84a2eEc4f98df9/3fcb4daeec17d3c2.jpg.dpg',
+      'currentPrice': '123.99',
+      'originPrince': '399'
+    },
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t1/86023/20/10708/172944/5e1e7e25Ecec8424c/89ee2f04ca3d9a9e.jpg.dpg',
+      'currentPrice': '123.99',
+      'originPrince': '399'
+    },
+    {
+      'url':
+          'https://img14.360buyimg.com/n1/s150x150_jfs/t1/66260/25/11056/149965/5d8825a6Eb47ec609/e64417c2637739fe.jpg.dpg',
+      'currentPrice': '123.99',
+      'originPrince': '399'
+    }
+  ];
+
+  // 楼层区域
+  final List<dynamic> floorArr = [
+    {
+      "first": [
+        {
+          "floorTitleImg":
+              'https://m.360buyimg.com/mobilecms/s700x280_jfs/t1/36958/34/5025/100639/5cbf5749Ee9fcfb22/b6eb36331095813a.jpg!cr_1125x445_0_171!q70.jpg.dpg',
+        },
+        {
+          "top": {
+            "firstLeftImg":
+                "https://m.360buyimg.com/mobilecms/s150x150_jfs/t1/102437/11/9348/284819/5e0ed818E0cae2155/6719570ad629486e.jpg!q70.jpg.dpg",
+            "firstRightImg": [
+              "https://m.360buyimg.com/mobilecms/s150x150_jfs/t1/96538/29/10945/210130/5e2562c2E5d505ca5/09514da4caf5e45a.jpg!q70.jpg.dpg",
+              "https://m.360buyimg.com/mobilecms/s150x150_jfs/t1/103689/12/10877/384143/5e225b8bEedae52c6/0863e2576e2897cd.jpg!q70.jpg.dpg"
+            ]
+          },
+          "bottom": {
+            "left": "https://m.360buyimg.com/mobilecms/s150x150_jfs/t1/105005/6/10963/70000/5e241712E735c9d98/1e2943fe46b697a2.jpg!q70.jpg.dpg",
+            "right": "https://m.360buyimg.com/mobilecms/s150x150_jfs/t1/102437/11/9348/284819/5e0ed818E0cae2155/6719570ad629486e.jpg!q70.jpg.dpg"
+          }
+        }
+      ]
+    }
+  ];
   // void initState() {
   //   getHomePageContext().then((res) => {
   //         setState(() => {membetTitle = res.toString()})
@@ -177,35 +244,37 @@ class _HomePageState extends State<HomePage> {
           //   },
           // )
 
-          body: ListView(
-            children: <Widget>[
-              Container(
-                color: Color.fromRGBO(239, 13, 59, 1),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                        child: SingleChildScrollView(
-                      child: SwiperItem(SwiperItemList: SwiperItemLists),
-                    )),
-                    Container(
-                      height: ScreenUtil().setHeight(300),
-                      child: TopNavigator(navigatorList: navigatorList),
-                    ),
-                    Container(
-                      child: LeaderPhone(
-                          leaderMsg: leaderMsg, leaderPhone: leaderPhone),
-                    ),
-                    SecondsKill(secondsSkillArr: secondsSkillArr),
-                    Container(
-                      child: SingleChildScrollView(
-                        child: AdBanner(recommendBanner: BannerArr),
-                      ),
-                    ),
-                  ],
+          body: SingleChildScrollView(
+              child: Container(
+            color: Color.fromRGBO(239, 13, 59, 1),
+            child: Column(
+              children: <Widget>[
+                Container(
+                    child: SingleChildScrollView(
+                  child: SwiperItem(SwiperItemList: SwiperItemLists),
+                )),
+                Container(
+                  height: ScreenUtil().setHeight(300),
+                  child: TopNavigator(navigatorList: navigatorList),
                 ),
-              )
-            ],
-          )),
+                Container(
+                  child: LeaderPhone(
+                      leaderMsg: leaderMsg,
+                      leaderPhone: leaderPhone,
+                      leaderImgs: leaderImg),
+                ),
+                SecondsKill(secondsSkillArr: secondsSkillArr),
+                Container(
+                  child: SingleChildScrollView(
+                    child: AdBanner(recommendBanner: BannerArr),
+                  ),
+                ),
+                GoodsRecommend(goodsRecommend: goodsRecommend),
+                FloorTitle(floorTitle: floorArr[0]['first'][0]['floorTitleImg']),
+                FloorRow(floorArr: floorArr[0]['first'][1])
+              ],
+            ),
+          ))),
     );
   }
 }

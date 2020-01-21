@@ -25,10 +25,9 @@ class _indexPageState extends State<indexPage> {
         icon: Icon(CupertinoIcons.profile_circled), title: Text('会员中心'))
   ];
 
-  final List tabList = [HomePage(), CategoryPage(), CartPage(), MemberPage()];
+  final List<Widget> tabList = [HomePage(), CategoryPage(), CartPage(), MemberPage()];
 
   int currentIndex = 0;
-
   var currentPage;
   @override
   void initState() {
@@ -52,7 +51,10 @@ class _indexPageState extends State<indexPage> {
           });
         },
       ),
-      body: currentPage, //  显示当前的页面
+      body: IndexedStack(
+        index: currentIndex,
+        children: tabList,
+      ), //  显示当前的页面
     );
   }
 }
